@@ -1,0 +1,53 @@
+from .data_storage import obtener_datos
+from .functions import candidatos
+
+# Lista de provincias 
+provincias = [
+    "Buenos Aires", "Ciudad Autónoma de Buenos Aires", "Catamarca", "Chaco", "Chubut", 
+    "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja",
+    "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis",
+    "Santa Cruz", "Santa Fe", "Tierra del Fuego", "Tucumán"
+]
+
+# Lista de partidos
+partidos = [
+    "Unión por la Patria", "La Libertad Avanza", "Juntos por el Cambio",
+    "Hacemos por nuestro país", "Frente de Izquierda", "Blancos / nulos"
+]
+
+# Matriz de pesos en formato decimal (cada fila corresponde a una provincia y cada columna a un partido)
+# Los pesos están en formato decimal (0.0-1.0)
+matriz_pesos = [
+    [0.4283, 0.3203, 0.1713, 0.0644, 0.0158, 0.0780],  # Buenos Aires
+    [0.3218, 0.1998, 0.4123, 0.0397, 0.0353, 0.0250],  # Ciudad Autónoma de Buenos Aires
+    [0.4367, 0.2782, 0.2410, 0.0362, 0.0078, 0.0164],  # Catamarca
+    [0.3222, 0.3513, 0.2057, 0.0770, 0.0438, 0.0285],  # Chaco
+    [0.1342, 0.3358, 0.2263, 0.2898, 0.0139, 0.0162],  # Chubut
+    [0.3721, 0.2687, 0.3213, 0.0273, 0.0106, 0.0249],  # Córdoba
+    [0.3331, 0.2974, 0.3003, 0.0536, 0.0156, 0.0553],  # Corrientes
+    [0.5231, 0.2906, 0.1538, 0.0244, 0.0081, 0.0188],  # Entre Ríos
+    [0.3236, 0.3735, 0.1996, 0.0679, 0.0354, 0.0240],  # Formosa
+    [0.3486, 0.3351, 0.2190, 0.0744, 0.0229, 0.0183],  # Jujuy
+    [0.4114, 0.3763, 0.1180, 0.0851, 0.0092, 0.0226],  # La Pampa
+    [0.2401, 0.4238, 0.2582, 0.0432, 0.0347, 0.0303],  # La Rioja
+    [0.3793, 0.4219, 0.1439, 0.0410, 0.0140, 0.0330],  # Mendoza
+    [0.3176, 0.3674, 0.2056, 0.0595, 0.0499, 0.0435],  # Misiones
+    [0.3785, 0.3376, 0.1813, 0.0625, 0.0401, 0.0441],  # Neuquén
+    [0.3800, 0.4027, 0.1380, 0.0618, 0.0175, 0.0307],  # Río Negro
+    [0.3330, 0.3508, 0.2320, 0.0617, 0.0223, 0.0246],  # Salta
+    [0.2733, 0.4333, 0.2091, 0.0624, 0.0219, 0.0299],  # San Juan
+    [0.3779, 0.3630, 0.1641, 0.0660, 0.0290, 0.0779],  # San Luis
+    [0.2970, 0.3252, 0.2688, 0.0902, 0.0189, 0.0213],  # Santa Cruz
+    [0.6577, 0.2284, 0.0801, 0.0213, 0.0125, 0.0206],  # Santa Fe
+    [0.3820, 0.3382, 0.1499, 0.0912, 0.0386, 0.0305],  # Tierra del Fuego
+    [0.4493, 0.3500, 0.1464, 0.0399, 0.0144, 0.0319]   # Tucumán
+]
+
+# Función para obtener el peso de un partido en una provincia específica
+def obtener_peso(provincia, partido):
+    indice_provincia = provincias.index(provincia)
+    indice_partido = partidos.index(partido)
+    return matriz_pesos[indice_provincia][indice_partido]
+
+# Ejemplo de uso:
+print(obtener_peso("Ciudad Autónoma de Buenos Aires", "Unión por la Patria"))  # Imprime el peso de "Unión por la Patria" en Ciudad Autónoma de Buenos Aires
